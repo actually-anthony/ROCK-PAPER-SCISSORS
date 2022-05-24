@@ -8,20 +8,22 @@ const HAND_WINS = {
 let playerScore = 0;
 let computerScore = 0;
 
-// select random hand choice 
+// select random hand choice
 let computerPlay = () =>
 	SELECTION[Math.floor(Math.random() * SELECTION.length)];
-
 
 // returns true if player wins
 function playRound(playerSelection, computerSelection) {
 	// tie
 	if (playerSelection === computerSelection) {
-		return false;
+		return;
 	}
 
-	return playerSelection[computerSelection];
-
+	if (HAND_WINS[playerSelection][computerSelection]) {
+		playerScore++;
+	} else {
+		computerScore++;
+	}
 }
 
 /**
@@ -48,22 +50,22 @@ function printOutcome(win, playerSelection, computerSelection) {
 
 // plays the game for 5 rounds and keeps track of the score
 function game() {
-	let computerScore = 0;
-	let playerScore = 0;
-
 	// prompt user for input
 
 	for (let i = 0; i < 5; i++) {
 		let playerSelection = getPlayerSelection();
 		let computerSelection = computerPlay();
 
-		console.log(computerSelection);
+		console.log("Player: %s", playerSelection);
+		console.log("Computer: %s", computerSelection);
 
-		playRound(playerSelection, computerSelection)
-
-
-
-
+		playRound(playerSelection, computerSelection);
+		console.log(
+			"Round %i: Player score: %i Computer score: %i",
+			i + 1,
+			playerScore,
+			computerScore
+		);
 	}
 }
 
@@ -88,20 +90,6 @@ function getPlayerSelection() {
 }
 
 function main() {
-	let playerSelection = computerPlay();
-	let computerSelection = computerPlay();
-
-	console.log("Player has %s", playerSelection);
-	console.log("Computer has %s", computerSelection);
-
-	console.log(
-		printOutcome(
-			playRound(playerSelection, computerSelection),
-			playerSelection,
-			computerSelection
-		)
-	);
-
 	game();
 }
 
