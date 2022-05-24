@@ -14,31 +14,44 @@ let computerPlay = () =>
 
 // returns true if player wins
 function playRound(playerSelection, computerSelection) {
-	// tie
 	if (playerSelection === computerSelection) {
+		console.log("TIE");
 		return;
 	}
 
 	if (HAND_WINS[playerSelection][computerSelection]) {
+		console.log("Player wins");
 		playerScore++;
 	} else {
+		console.log("Computer wins");
 		computerScore++;
 	}
 }
 
+function printWinner() {
+	if (playerScore == computerScore) {
+		console.log("No winner, tied game");
+	} else if (playerScore > computerScore) {
+		console.log("Player wins");
+	} else {
+		console.log("Computer wins");
+	}
+}
 
 // plays the game for 5 rounds and keeps track of the score
 function game() {
-	// prompt user for input
+	let playerSelection = "";
+	let computerSelection = "";
 
 	for (let i = 0; i < 5; i++) {
-		let playerSelection = getPlayerSelection();
-		let computerSelection = computerPlay();
+		playerSelection = getPlayerSelection();
+		computerSelection = computerPlay();
 
 		console.log("Player: %s", playerSelection);
 		console.log("Computer: %s", computerSelection);
 
 		playRound(playerSelection, computerSelection);
+
 		console.log(
 			"Round %i: Player score: %i Computer score: %i",
 			i + 1,
@@ -46,6 +59,8 @@ function game() {
 			computerScore
 		);
 	}
+
+	printWinner();
 }
 
 function getPlayerSelection() {
@@ -56,11 +71,8 @@ function getPlayerSelection() {
 
 		let loweredPlayerChoice = playerChoice.toLowerCase();
 
-		// console.log("Transformed %s -> %s", playerChoice, loweredPlayerChoice);
-
 		// checks if user input is valid
 		if (SELECTION.includes(loweredPlayerChoice)) {
-			console.log("%s is in SELECTION", playerChoice);
 			return loweredPlayerChoice;
 		} else {
 			alert("Please choose from the choices of rock, paper, or scissors");
