@@ -26,27 +26,6 @@ function playRound(playerSelection, computerSelection) {
 	}
 }
 
-/**
- *
- * @param {boolean} win
- * @param {string} playerSelection
- * @param {string} computerSelection
- */
-function printOutcome(win, playerSelection, computerSelection) {
-	if (win) {
-		console.log(
-			"Player wins with %s, beating Computer with %s",
-			playerSelection,
-			computerSelection
-		);
-	} else {
-		console.log(
-			"Player loses with %s, lost to Computer with %s",
-			playerSelection,
-			computerSelection
-		);
-	}
-}
 
 // plays the game for 5 rounds and keeps track of the score
 function game() {
