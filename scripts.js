@@ -122,15 +122,16 @@ function main() {
   const paperButton = document.querySelector("#paper-btn");
   const scissorsButton = document.querySelector("#scissors-btn");
 
-  rockButton.addEventListener(type, () => {
+  rockButton.addEventListener("click", () => {
     playRound("rock");
+    console.log("hello");
   });
 
-  paperButton.addEventListener(type, () => {
+  paperButton.addEventListener("click", () => {
     playRound("paper");
   });
 
-  scissorsButton.addEventListener(type, () => {
+  scissorsButton.addEventListener("click", () => {
     playRound("scissors");
   });
 }
