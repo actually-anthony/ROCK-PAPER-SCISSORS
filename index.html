@@ -4,23 +4,27 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>RPS</title>
     <script src="scripts.js" defer></script>
+    <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <div>
-      <h1>SCOREBOARD</h1>
+    <h1 id="status">Player vs Computer</h1>
+
+    <div id="score">
       <h1 id="player-score">Player: 0</h1>
       <h1 id="computer-score">Computer: 0</h1>
     </div>
 
     <div id="container">
+      <p>Player Selection</p>
       <button class="hand">Rock</button>
       <button class="hand">Paper</button>
       <button class="hand">Scissors</button>
     </div>
 
     <div id="cpu-button-container">
+      <p>Computer Selection</p>
       <button class="cpu-hand">Rock</button>
       <button class="cpu-hand">Paper</button>
       <button class="cpu-hand">Scissors</button>

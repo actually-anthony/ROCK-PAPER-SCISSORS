@@ -15,20 +15,30 @@ let computerPlay = () =>
 
 // returns true if player wins
 function playRound(playerSelection) {
+  // should produce a play again button instead
+  if (playerScore == 5 || computerScore == 5) {
+    resetGame();
+    return;
+  }
+
   computerSelection = computerPlay();
   showComputerHand(computerSelection);
+  const stat = document.querySelector("#status");
 
   if (playerSelection === computerSelection) {
-    console.log("TIE");
+    stat.textContent = "Tie round";
     return;
   }
 
   if (HAND_WINS[playerSelection][computerSelection]) {
     console.log("Player wins");
+    stat.textContent = "Player won this round";
     playerScore++;
     console.log(playerScore);
   } else {
-    console.log("Computer wins");
+    stat.textContent = "Computer won this round";
+
+    console.log("Computer won this round");
     computerScore++;
     console.log(computerScore);
   }
@@ -43,8 +53,10 @@ function showComputerHand(hand) {
   buttons.forEach((button) => {
     if (button.textContent.toLocaleLowerCase() == hand) {
       button.style.color = "red";
+      button.style.borderWidth = "thick";
     } else {
       button.style.color = "black";
+      button.style.borderWidth = "thin";
     }
   });
 }
@@ -57,39 +69,13 @@ function updateScore() {
   cpuScore.textContent = "Computer: " + computerScore;
 }
 
-// plays the game for 5 rounds and keeps track of the score
-function game() {
-  let playerSelection = "";
-  let computerSelection = "";
-
-  for (let i = 0; i < 5; i++) {
-    // TODO: playerSelection is based off buttons
-    playerSelection = getPlayerSelection();
-    computerSelection = computerPlay();
-
-    console.log("Player: %s", playerSelection);
-    console.log("Computer: %s", computerSelection);
-
-    playRound(playerSelection);
-
-    console.log(
-      "Round %i: Player score: %i Computer score: %i",
-      i + 1,
-      playerScore,
-      computerScore
-    );
-  }
-
-  printWinner();
-}
-
 function checkWin() {
-  console.log("checking");
-  // the alert happens after updateScore in code, but it happens before
-  // when testing, so the UI doesn't update to 5 even if it shows a win
+  const stat = document.querySelector("#status");
+
   if (playerScore == 5 || computerScore == 5) {
-    playerScore > computerScore ? alert("Player Won") : alert("Computer Won");
-    resetGame();
+    playerScore > computerScore
+      ? (stat.textContent = "Player won")
+      : (stat.textContent = "Computer won");
   }
 
   return;
@@ -99,6 +85,14 @@ function resetGame() {
   playerScore = 0;
   computerScore = 0;
   round = 0;
+  document.querySelector("#status").textContent = "Player vs Computer";
+
+  // remove coloring from previous rounds
+  const buttons = document.querySelectorAll(".cpu-hand");
+  buttons.forEach((button) => {
+    button.style.color = "black";
+    button.style.borderWidth = "thin";
+  });
 
   updateScore();
 }
