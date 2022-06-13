@@ -118,12 +118,20 @@ function getPlayerSelection() {
 function main() {
   //   game();
 
-  const buttons = document.querySelectorAll("button");
+  const rockButton = document.querySelector("#rock-btn");
+  const paperButton = document.querySelector("#paper-btn");
+  const scissorsButton = document.querySelector("#scissors-btn");
 
-  buttons.forEach((button) => {
-    button.addEventListener("click", () => {
-      playRound(button.textContent.toLowerCase());
-    });
+  rockButton.addEventListener(type, () => {
+    playRound("rock");
+  });
+
+  paperButton.addEventListener(type, () => {
+    playRound("paper");
+  });
+
+  scissorsButton.addEventListener(type, () => {
+    playRound("scissors");
   });
 }
 
