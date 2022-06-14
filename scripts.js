@@ -16,10 +16,13 @@ let computerPlay = () =>
 // returns true if player wins
 function playRound(playerSelection) {
   // should produce a play again button instead
+  console.log(playerScore);
   if (playerScore == 5 || computerScore == 5) {
     resetGame();
     return;
   }
+
+  showerPlayerHand(playerSelection);
 
   computerSelection = computerPlay();
   showComputerHand(computerSelection);
@@ -61,6 +64,19 @@ function showComputerHand(hand) {
   });
 }
 
+function showerPlayerHand(hand) {
+  const buttons = document.querySelectorAll(".player-hand");
+  buttons.forEach((button) => {
+    if (button.textContent.toLocaleLowerCase() == hand) {
+      button.style.color = "blue";
+      button.style.borderWidth = "thick";
+    } else {
+      button.style.color = "black";
+      button.style.borderWidth = "thin";
+    }
+  });
+}
+
 function updateScore() {
   const humanScore = document.querySelector("#player-score");
   const cpuScore = document.querySelector("#computer-score");
@@ -88,12 +104,17 @@ function resetGame() {
   document.querySelector("#status").textContent = "Player vs Computer";
 
   // remove coloring from previous rounds
-  const buttons = document.querySelectorAll(".cpu-hand");
-  buttons.forEach((button) => {
+  const cpuButtons = document.querySelectorAll(".cpu-hand");
+  cpuButtons.forEach((button) => {
     button.style.color = "black";
     button.style.borderWidth = "thin";
   });
 
+  const playerButtons = document.querySelectorAll(".player-hand");
+  playerButtons.forEach((button) => {
+    button.style.color = "black";
+    button.style.borderWidth = "thin";
+  });
   updateScore();
 }
 
