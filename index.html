@@ -7,6 +7,10 @@
     <title>RPS</title>
     <script src="scripts.js" defer></script>
     <link rel="stylesheet" href="styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    />
   </head>
   <body>
     <h1 id="status">Player vs Computer</h1>
@@ -17,17 +21,29 @@
     </div>
 
     <div class="choice-container">
-      <p>Player Selection</p>
-      <button class="player-hand" id="rock-btn">Rock</button>
-      <button class="player-hand" id="paper-btn">Paper</button>
-      <button class="player-hand" id="scissors-btn">Scissors</button>
+      <p>Player</p>
+      <button class="player-hand" id="rock-btn">
+        <i class="material-icons">rocket</i>
+      </button>
+      <button class="player-hand" id="paper-btn">
+        <i class="material-icons">description</i>
+      </button>
+      <button class="player-hand" id="scissors-btn">
+        <i class="material-icons">content_cut</i>
+      </button>
     </div>
 
     <div class="choice-container">
-      <p>Computer Selection</p>
-      <button class="cpu-hand">Rock</button>
-      <button class="cpu-hand">Paper</button>
-      <button class="cpu-hand">Scissors</button>
+      <p>Computer</p>
+      <button class="cpu-hand" id="cpu-rock-btn" disabled>
+        <i class="material-icons">rocket</i>
+      </button>
+      <button class="cpu-hand" id="cpu-paper-btn" disabled>
+        <i class="material-icons">description</i>
+      </button>
+      <button class="cpu-hand" id="cpu-scissors-btn" disabled>
+        <i class="material-icons">content_cut</i>
+      </button>
     </div>
   </body>
 </html>

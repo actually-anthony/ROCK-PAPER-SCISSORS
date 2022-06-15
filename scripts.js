@@ -16,7 +16,6 @@ let computerPlay = () =>
 // returns true if player wins
 function playRound(playerSelection) {
   // should produce a play again button instead
-  console.log(playerScore);
   if (playerScore == 5 || computerScore == 5) {
     resetGame();
     return;
@@ -34,16 +33,12 @@ function playRound(playerSelection) {
   }
 
   if (HAND_WINS[playerSelection][computerSelection]) {
-    console.log("Player wins");
     stat.textContent = "Player won this round";
     playerScore++;
-    console.log(playerScore);
   } else {
     stat.textContent = "Computer won this round";
 
-    console.log("Computer won this round");
     computerScore++;
-    console.log(computerScore);
   }
 
   updateScore();
@@ -54,12 +49,10 @@ function playRound(playerSelection) {
 function showComputerHand(hand) {
   const buttons = document.querySelectorAll(".cpu-hand");
   buttons.forEach((button) => {
-    if (button.textContent.toLocaleLowerCase() == hand) {
-      button.style.color = "red";
-      button.style.borderWidth = "thick";
+    if (button.id.includes(hand)) {
+      button.classList.add("chosen");
     } else {
-      button.style.color = "black";
-      button.style.borderWidth = "thin";
+      button.classList.remove("chosen");
     }
   });
 }
@@ -67,12 +60,10 @@ function showComputerHand(hand) {
 function showerPlayerHand(hand) {
   const buttons = document.querySelectorAll(".player-hand");
   buttons.forEach((button) => {
-    if (button.textContent.toLocaleLowerCase() == hand) {
-      button.style.color = "blue";
-      button.style.borderWidth = "thick";
+    if (button.id.includes(hand)) {
+      button.classList.add("chosen");
     } else {
-      button.style.color = "black";
-      button.style.borderWidth = "thin";
+      button.classList.remove("chosen");
     }
   });
 }
@@ -106,14 +97,12 @@ function resetGame() {
   // remove coloring from previous rounds
   const cpuButtons = document.querySelectorAll(".cpu-hand");
   cpuButtons.forEach((button) => {
-    button.style.color = "black";
-    button.style.borderWidth = "thin";
+    button.classList.remove("chosen");
   });
 
   const playerButtons = document.querySelectorAll(".player-hand");
   playerButtons.forEach((button) => {
-    button.style.color = "black";
-    button.style.borderWidth = "thin";
+    button.classList.remove("chosen");
   });
   updateScore();
 }
@@ -145,7 +134,6 @@ function main() {
 
   rockButton.addEventListener("click", () => {
     playRound("rock");
-    console.log("hello");
   });
 
   paperButton.addEventListener("click", () => {

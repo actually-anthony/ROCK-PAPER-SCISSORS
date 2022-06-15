@@ -7,11 +7,51 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-color: #f4bfbf;
+  color: white;
 }
 
 .choice-container {
   border-style: solid;
-  border-radius: 5px;
+  border-radius: 10px;
   padding: 15px;
-  margin-bottom: 15px;
+  margin-bottom: 30px;
+}
+
+.hand-chosen {
+  color: black;
+  border: thick;
+}
+
+.choice-container {
+  background-color: #ffd9c0;
+}
+
+.choice-container p {
+  font-size: 20px;
+  margin: 0;
+  font-weight: bold;
+}
+
+.player-hand,
+.cpu-hand {
+  background-color: #8cc0de;
+  border-color: white;
+  color: white;
+  border-radius: 10px;
+}
+
+.chosen {
+  border: 4px inset white;
+  color: white;
+  transition: 0.3s;
+}
+
+button .material-icons {
+  font-size: 48px;
+}
+
+#status {
+  font-size: 40px;
+  margin-bottom: 0;
 }
