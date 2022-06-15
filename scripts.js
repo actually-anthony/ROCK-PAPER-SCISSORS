@@ -13,7 +13,6 @@ let round = 0;
 let computerPlay = () =>
   SELECTION[Math.floor(Math.random() * SELECTION.length)];
 
-// returns true if player wins
 function playRound(playerSelection) {
   // should produce a play again button instead
   if (playerScore == 5 || computerScore == 5) {
@@ -21,10 +20,10 @@ function playRound(playerSelection) {
     return;
   }
 
-  showerPlayerHand(playerSelection);
+  showHand(playerSelection, ".player-hand");
 
   computerSelection = computerPlay();
-  showComputerHand(computerSelection);
+  showHand(computerSelection, ".cpu-hand");
   const stat = document.querySelector("#status");
 
   if (playerSelection === computerSelection) {
@@ -37,7 +36,6 @@ function playRound(playerSelection) {
     playerScore++;
   } else {
     stat.textContent = "Computer won this round";
-
     computerScore++;
   }
 
@@ -45,20 +43,9 @@ function playRound(playerSelection) {
   checkWin();
 }
 
-// shows user the hand that the computer chose
-function showComputerHand(hand) {
-  const buttons = document.querySelectorAll(".cpu-hand");
-  buttons.forEach((button) => {
-    if (button.id.includes(hand)) {
-      button.classList.add("chosen");
-    } else {
-      button.classList.remove("chosen");
-    }
-  });
-}
-
-function showerPlayerHand(hand) {
-  const buttons = document.querySelectorAll(".player-hand");
+// animates button chosen
+function showHand(hand, selector) {
+  const buttons = document.querySelectorAll(selector);
   buttons.forEach((button) => {
     if (button.id.includes(hand)) {
       button.classList.add("chosen");
